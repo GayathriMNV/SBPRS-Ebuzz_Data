@@ -15,6 +15,13 @@ nltk.data.path.append(dir)
 
 app = Flask(__name__)
 
+# fix to favicon issue
+from flask import send_from_directory
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
 clean_data = pickle.load(open('reviews_clean_data.pkl', 'rb'))
 tfidf_vect_model = pickle.load(open('tfidf.pkl', 'rb'))
 smote_model = pickle.load(open('smote.pkl', 'rb'))
