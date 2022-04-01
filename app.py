@@ -4,6 +4,15 @@ import pandas as pd
 import pickle as pickle
 from model import top_20_recommended_products,top_5_products_using_sentiment_analysis
 
+import os
+
+#to get the current working directory
+dir = os.getcwd() + "/" + 'nltk_data'
+print(dir)
+
+import nltk
+nltk.data.path.append(dir)
+
 app = Flask(__name__)
 
 clean_data = pickle.load(open('reviews_clean_data.pkl', 'rb'))
